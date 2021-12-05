@@ -33,7 +33,7 @@ defmodule AdventOfCode2021.Day4 do
       case Enum.map(tables, &check_num(num, &1)) do
         [last] ->
           case has_won?(last) do
-            true -> {:halt, sum_remaining(last)* num}
+            true -> {:halt, sum_remaining(last) * num}
             false -> {:cont, [last]}
           end
 
@@ -65,8 +65,7 @@ defmodule AdventOfCode2021.Day4 do
   end
 
   defp check_num(num, table) do
-    table
-    |> Enum.map(fn row ->
+    Enum.map(table, fn row ->
       Enum.map(row, fn
         ^num -> -1
         e -> e
@@ -93,15 +92,6 @@ defmodule AdventOfCode2021.Day4 do
          [_, _, _, -1 | _],
          [_, _, _, -1 | _],
          [_, _, _, -1 | _]
-       ]),
-       do: true
-
-  defp has_won?([
-         [_, _, _, _, -1, _],
-         [_, _, _, _, -1, _],
-         [_, _, _, _, -1, _],
-         [_, _, _, _, -1, _],
-         [_, _, _, _, -1, _]
        ]),
        do: true
 
