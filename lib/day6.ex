@@ -22,11 +22,29 @@ defmodule AdventOfCode2021.Day6 do
   end
 
   defp ff_n_days(fish_map, span) do
-    Enum.reduce(1..span, fish_map, fn _day, cur_map ->
-      Enum.reduce(cur_map, %{}, fn
-        {0, cnt}, new_map -> new_map |> Map.update(6, cnt, &(&1 + cnt)) |> Map.put(8, cnt)
-        {days_rem, cnt}, new_map -> Map.update(new_map, days_rem - 1, cnt, &(&1 + cnt))
-      end)
+    Enum.reduce(1..span, fish_map, fn _day,
+                                      %{
+                                        0 => val0,
+                                        1 => val1,
+                                        2 => val2,
+                                        3 => val3,
+                                        4 => val4,
+                                        5 => val5,
+                                        6 => val6,
+                                        7 => val7,
+                                        8 => val8
+                                      } ->
+      %{
+        0 => val1,
+        1 => val2,
+        2 => val3,
+        3 => val4,
+        4 => val5,
+        5 => val6,
+        6 => val0 + val7,
+        7 => val8,
+        8 => val0
+      }
     end)
   end
 
