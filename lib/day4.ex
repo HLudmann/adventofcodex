@@ -76,33 +76,10 @@ defmodule AdventOfCode2021.Day4 do
   defp has_won?(table)
 
   defp has_won?([[-1, -1, -1, -1, -1] | _]), do: true
-  defp has_won?([_, [-1, -1, -1, -1, -1] | _]), do: true
-  defp has_won?([_, _, [-1, -1, -1, -1, -1] | _]), do: true
-  defp has_won?([_, _, _, [-1, -1, -1, -1, -1] | _]), do: true
-  defp has_won?([_, _, _, _, [-1, -1, -1, -1, -1]]), do: true
   defp has_won?([[-1 | _], [-1 | _], [-1 | _], [-1 | _], [-1 | _]]), do: true
-  defp has_won?([[_, -1 | _], [_, -1 | _], [_, -1 | _], [_, -1 | _], [_, -1 | _]]), do: true
 
-  defp has_won?([[_, _, -1 | _], [_, _, -1 | _], [_, _, -1 | _], [_, _, -1 | _], [_, _, -1 | _]]),
-    do: true
-
-  defp has_won?([
-         [_, _, _, -1 | _],
-         [_, _, _, -1 | _],
-         [_, _, _, -1 | _],
-         [_, _, _, -1 | _],
-         [_, _, _, -1 | _]
-       ]),
-       do: true
-
-  defp has_won?([
-         [_, _, _, _, -1],
-         [_, _, _, _, -1],
-         [_, _, _, _, -1],
-         [_, _, _, _, -1],
-         [_, _, _, _, -1]
-       ]),
-       do: true
+  defp has_won?([[_ | _] | _] = table),
+    do: has_won?(tl(table)) or has_won?(Enum.map(table, &tl/1))
 
   defp has_won?(_), do: false
 
