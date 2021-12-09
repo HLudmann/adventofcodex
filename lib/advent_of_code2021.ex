@@ -3,7 +3,7 @@ defmodule AdventOfCode2021 do
   Documentation for `AdventOfCode2021`.
   """
 
-  @days_solved (File.ls!("lib") |> length()) - 1
+  @days_solved 9
 
   def get_input(day) do
     File.read!("puzzle_inputs/day#{day}.txt") |> String.split("\n", trim: true)
