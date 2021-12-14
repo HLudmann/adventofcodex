@@ -3,7 +3,7 @@ defmodule AdventOfCode2021 do
   Documentation for `AdventOfCode2021`.
   """
 
-  @days_solved 13
+  @days_solved 14
 
   @spec get_input(number) :: [String.t]
   def get_input(day) do
@@ -28,5 +28,12 @@ defmodule AdventOfCode2021 do
       IO.puts("Day#{day}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}")
     end
     :ok
+  end
+
+  def time_benchmark(func) do
+    func
+    |> :timer.tc()
+    |> elem(0)
+    |> Kernel./(1_000_000)
   end
 end
