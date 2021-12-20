@@ -69,7 +69,6 @@ defmodule AdventOfCode2021.Day18 do
 
   def four_nested_path(pair, path \\ [])
   def four_nested_path(%{}, path) when length(path) == 4, do: path
-  def four_nested_path(_, path) when length(path) == 4, do: nil
 
   def four_nested_path(%{l: l, r: r}, path) do
     case four_nested_path(l, path ++ [:l]) do
