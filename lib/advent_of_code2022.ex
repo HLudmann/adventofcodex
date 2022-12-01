@@ -1,13 +1,13 @@
-defmodule AdventOfCode2021 do
+defmodule AdventOfCode2022 do
   @moduledoc """
-  Documentation for `AdventOfCode2021`.
+  Documentation for `AdventOfCode2022`.
   """
 
-  @days_solved 21
+  @days_solved 1
 
   @spec get_input(number) :: [String.t]
   def get_input(day) do
-    File.read!("puzzle_inputs/2021/day#{day}.txt") |> String.split("\n", trim: true)
+    File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n", trim: true)
   end
 
   @spec get_input_as_integer(number) :: [integer]
@@ -16,7 +16,7 @@ defmodule AdventOfCode2021 do
   1..@days_solved
   |> Enum.each(fn day ->
     def unquote(:"day#{day}")() do
-      module = String.to_existing_atom("Elixir.AdventOfCode2021.Day#{unquote(day)}")
+      module = String.to_existing_atom("Elixir.AdventOfCode2022.Day#{unquote(day)}")
       IO.puts("Day#{unquote(day)}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}")
     end
   end)
@@ -24,7 +24,7 @@ defmodule AdventOfCode2021 do
   @spec all_days :: :ok
   def all_days() do
     for day <- 1..@days_solved do
-      module = String.to_existing_atom("Elixir.AdventOfCode2021.Day#{day}")
+      module = String.to_existing_atom("Elixir.AdventOfCode2022.Day#{day}")
       IO.puts("Day#{day}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}")
     end
     :ok
