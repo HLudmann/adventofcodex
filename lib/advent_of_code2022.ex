@@ -5,13 +5,10 @@ defmodule AdventOfCode2022 do
 
   @days_solved 1
 
-  @spec get_input(number) :: [String.t]
-  def get_input(day) do
-    File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n", trim: true)
+  @spec read_input(number) :: [String.t]
+  def read_input(day) do
+    File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n")
   end
-
-  @spec get_input_as_integer(number) :: [integer]
-  def get_input_as_integer(day), do: get_input(day) |> Enum.map(&String.to_integer/1)
 
   1..@days_solved
   |> Enum.each(fn day ->
