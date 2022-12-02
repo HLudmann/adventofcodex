@@ -3,11 +3,11 @@ defmodule AdventOfCode2022 do
   Documentation for `AdventOfCode2022`.
   """
 
-  @days_solved 1
+  @days_solved 2
 
   @spec read_input(number) :: [String.t]
-  def read_input(day) do
-    File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n")
+  def read_input(day, opts \\ []) do
+    File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n", opts)
   end
 
   1..@days_solved
