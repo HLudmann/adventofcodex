@@ -3,18 +3,25 @@ defmodule AdventOfCode2022 do
   Documentation for `AdventOfCode2022`.
   """
 
-  @days_solved 2
+  @days_solved 6
 
-  @spec read_input(number) :: [String.t]
+  @spec read_input(number) :: [String.t()]
   def read_input(day, opts \\ []) do
     File.read!("puzzle_inputs/2022/day#{day}.txt") |> String.split("\n", opts)
   end
+
+  @spec stream_input(number, :line | number) :: File.Stream.t()
+  def stream_input(day, line_or_bytes \\ :line),
+    do: File.stream!("puzzle_inputs/2022/day#{day}.txt", [], line_or_bytes)
 
   1..@days_solved
   |> Enum.each(fn day ->
     def unquote(:"day#{day}")() do
       module = String.to_existing_atom("Elixir.AdventOfCode2022.Day#{unquote(day)}")
-      IO.puts("Day#{unquote(day)}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}")
+
+      IO.puts(
+        "Day#{unquote(day)}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}"
+      )
     end
   end)
 
@@ -24,6 +31,7 @@ defmodule AdventOfCode2022 do
       module = String.to_existing_atom("Elixir.AdventOfCode2022.Day#{day}")
       IO.puts("Day#{day}:\n\tpuzzle1: #{module.puzzle1()}\n\tpuzzle2: #{module.puzzle2()}")
     end
+
     :ok
   end
 
