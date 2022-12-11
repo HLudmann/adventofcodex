@@ -28,6 +28,8 @@ defmodule AdventOfCode2022.Day2 do
     end
   end
 
+  @p1_translator %{"A" => :rock, "B" => :paper, "C" => :scissor}
+
   defp input_to_rps_p1() do
     AdventOfCode2022.read_input(2, trim: true)
     |> Enum.map(fn line ->
@@ -74,7 +76,7 @@ defmodule AdventOfCode2022.Day2 do
     do: %{play | score: @outcome_pts[outcome] + @shape_pts[me]}
 
   defp sum_scores(plays) do
-    plays|> Enum.map(fn %__MODULE__.RPS{score: score} -> score end) |> Enum.sum()
+    plays |> Enum.map(fn %__MODULE__.RPS{score: score} -> score end) |> Enum.sum()
   end
 
   defp compute_my_play(play = %__MODULE__.RPS{them: them, outcome: outcome}) do
