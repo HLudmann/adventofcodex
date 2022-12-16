@@ -3,7 +3,7 @@ defmodule AdventOfCode2022 do
   Documentation for `AdventOfCode2022`.
   """
 
-  @days_solved 15
+  @days_solved 16
 
   @spec read_input(number) :: [String.t()]
   def read_input(day, opts \\ []) do
