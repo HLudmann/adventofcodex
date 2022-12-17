@@ -20,7 +20,10 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-advent_of_code_2021-*.tar
+advent_of_codex-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# ignore inputs
+/puzzle_inputs/
