@@ -52,16 +52,35 @@ defmodule AdventOfCode2022.Day16 do
     nbs = &neighs[&1]
     dist = h = fn _, _ -> 1 end
 
-    %{
-      valves
-      | dists:
-          for src <- v_names, into: %{} do
-            {src,
-             for dest <- v_names, into: %{} do
-               {dest, Astar.astar({nbs, dist, h}, src, dest)|>length()}
-             end}
-          end
-    }
+    :ets.new(:dists, [:named_table])
+
+    dists =
+      for src <- v_names, into: %{} do
+        {src,
+         for dest <- v_names, into: %{} do
+           dist =
+             case :ets.lookup(:dists, {src, dest}) do
+               [{_, value}] ->
+                 value |> IO.inspect(label: "from")
+
+               _ ->
+                 path = [src | Astar.astar({nbs, dist, h}, src, dest)]
+
+                 for s <- path,
+                     d <- path,
+                     si = Enum.find_index(path, & &1==s),
+                     di = Enum.find_index(path, & &1==d),
+                     do: :ets.insert(:dists, {{d, s}, Range.size(si..di) - 1})
+
+                 (length(path) - 1)|>IO.inspect(label: "to")
+             end
+
+           {dest, dist}
+         end}
+      end
+
+    :ets.delete(:dists)
+    %{valves | dists: dists}
   end
 
   defp visit(
