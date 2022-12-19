@@ -68,11 +68,11 @@ defmodule AdventOfCodex2022.Day16 do
 
                  for s <- path,
                      d <- path,
-                     si = Enum.find_index(path, & &1==s),
-                     di = Enum.find_index(path, & &1==d),
+                     si = Enum.find_index(path, &(&1 == s)),
+                     di = Enum.find_index(path, &(&1 == d)),
                      do: :ets.insert(:dists, {{d, s}, Range.size(si..di) - 1})
 
-                 (length(path) - 1)|>IO.inspect(label: "to")
+                 (length(path) - 1) |> IO.inspect(label: "to")
              end
 
            {dest, dist}
@@ -91,7 +91,7 @@ defmodule AdventOfCodex2022.Day16 do
          steam_flow,
          result
        ) do
-    result = result |> Map.put(state, result |> Map.get(state, 0) |> max(steam_flow))
+    result = result |> Map.update(state, steam_flow, &max(&1, steam_flow))
 
     useful
     |> Map.keys()
