@@ -21,7 +21,9 @@ defmodule AdventOfCodex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:eastar, "~> 0.5.1"}
+      {:eastar, "~> 0.5.1"},
+      {:nx, "~> 0.2"},
+      {:progress_bar, "> 0.0.0"}
     ]
   end
 end
