@@ -22,8 +22,6 @@ defmodule AdventOfCodex2022.Day25 do
       |> Enum.reverse()
       |> Enum.with_index()
       |> Enum.reduce(0, fn {val, exp}, sum -> sum + val * 5 ** exp end)
-
-      # |> Map.new(fn {v, i} -> {i, v} end)
     end)
   end
 
@@ -32,10 +30,9 @@ defmodule AdventOfCodex2022.Day25 do
   end
 
   defp dec_to_b5(b5, 0, 0), do: b5
-  defp dec_to_b5(b5, 0, 1), do: "1"<> b5
+  defp dec_to_b5(b5, 0, 1), do: "1" <> b5
 
   defp dec_to_b5(b5, rest, ret) do
-    IO.inspect(b5, label: rest)
     case rem(rest, 5) + ret do
       val when val <= 2 -> {val, 0}
       val -> {val - 5, 1}
